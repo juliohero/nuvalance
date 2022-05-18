@@ -1,4 +1,4 @@
-package com.nuvalance.util;
+package com.nuvalance.main;
 
 import com.nuvalance.service.RectangleService;
 
