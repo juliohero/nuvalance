@@ -1,6 +1,8 @@
 package com.nuvalance.main;
 
-import com.nuvalance.service.RectangleService;
+import com.nuvalance.service.MyRectangleService;
+import com.nuvalance.vo.MyRectangle;
+import com.nuvalance.vo.RectangleIntersection;
 
 import java.awt.Point;
 import javax.swing.*;
@@ -85,17 +87,26 @@ public class DrawRectangle extends JPanel {
 
             //When there are two rectangles, the validations are done, when finished shows a message and then the panel is cleared
             if (rectangles.size() == 2) {
-                RectangleService service = new RectangleService();
+                MyRectangleService service = new MyRectangleService();
                 StringBuilder message = new StringBuilder();
 
-                if (service.isContainment(rectangles.get(0), rectangles.get(1)) ||
-                        service.isContainment(rectangles.get(1), rectangles.get(0))) {
+                MyRectangle myRectangle1 = new MyRectangle(rectangles.get(0));
+                MyRectangle myRectangle2 = new MyRectangle(rectangles.get(1));
+
+                System.out.println(myRectangle1.toString() + "w" + myRectangle1.width + " h " + myRectangle1.height);
+                System.out.println(myRectangle2.toString() + "w" + myRectangle2.width + " h " + myRectangle2.height);
+
+                RectangleIntersection rectangleIntersection = new RectangleIntersection();
+                if (service.isContainment(myRectangle1, myRectangle2) ||
+                        service.isContainment(myRectangle2, myRectangle1)) {
                     message.append("Containment Detected");
                 }
-                else if (service.isIntersection(rectangles.get(0), rectangles.get(1))) {
-                    message.append("Intersection Detected");
+                else if ( (rectangleIntersection = service.isIntersection(myRectangle1, myRectangle2)).isIntersection() ) {
+                    message.append("Intersection Detected." +
+                            " 1st intersection:" + rectangleIntersection.getIntersectionPoint1().getX() + "," + rectangleIntersection.getIntersectionPoint1().getY() +
+                            " 2nd Intersection:" + rectangleIntersection.getIntersectionPoint2().getX() + "," + rectangleIntersection.getIntersectionPoint2().getY());
                 }
-                else if (service.isAdjacency(rectangles.get(0), rectangles.get(1))) {
+                else if (service.isAdjacency(myRectangle1, myRectangle2)) {
                     message.append("Adjacency Detected");
                 }
                 else {
