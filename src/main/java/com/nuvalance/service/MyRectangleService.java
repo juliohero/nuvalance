@@ -65,30 +65,34 @@ public class MyRectangleService implements Serializable {
             int x5 = 0, y5 = 0;
             int x6 = 0, y6 = 0;
 
-            //Not a corner Just a part of the rectangle intersected on the other rectangle in the X axis, on top or bottom
+            //Not a corner Just a part of the rectangle intersected on the other rectangle on the X axis, on top or bottom
             if (r1.getMinimumX() < r2.getMinimumX() &&
                 r2.getMaximumX() < r1.getMaximumX())   {
                 if (r2.getMaximumY() < r1.getMaximumY()) {
+                    //Top
                     x5 = r2.getMinimumX();
                     y5 = r1.getMinimumY();
                     x6 = r2.getMaximumX();
                     y6 = r1.getMinimumY();
                 } else {
+                    //Bottom
                     x5 = r2.getMinimumX();
                     y5 = r1.getMaximumY();
                     x6 = r2.getMaximumX();
                     y6 = r1.getMaximumY();
                 }
             }
-            //Not a corner Just a part of the rectangle intersected on the other rectangle in the Y axis, on left or right
+            //Not a corner Just a part of the rectangle intersected on the other rectangle on the Y axis, on left or right
             else if (r1.getMinimumY() < r2.getMinimumY() &&
                     r2.getMaximumY() < r1.getMaximumY())   {
                 if (r2.getMaximumX() < r1.getMaximumX()) {
+                    //Left
                     x5 = r1.getMinimumX();
                     y5 = r2.getMinimumY();
                     x6 = r1.getMinimumX();
                     y6 = r2.getMaximumY();
                 } else {
+                    //Right
                     x5 = r1.getMaximumX();
                     y5 = r2.getMinimumY();
                     x6 = r1.getMaximumX();
@@ -98,24 +102,28 @@ public class MyRectangleService implements Serializable {
             //Corners
             else if (r1.getMaximumX() < r2.getMaximumX() &&
                     r1.getMaximumY() < r2.getMaximumY()){
+                //Bottom Right Corner
                 x5 = r1.getMaximumX();
                 y5 = r2.getMinimumY();
                 x6 = r2.getMinimumX();
                 y6 = r1.getMaximumY();
             } else if (r1.getMaximumX() < r2.getMaximumX() &&
                     r1.getMaximumY() > r2.getMaximumY()) {
+                //Top Right Corner
                 x5 = r1.getMaximumX();
                 y5 = r2.getMaximumY();
                 x6 = r2.getMinimumX();
                 y6 = r1.getMinimumY();
             } else if (r1.getMaximumX() > r2.getMaximumX() &&
                     r1.getMaximumY() > r2.getMaximumY()) {
+                //Bottom Top Left Corner
                 x5 = r2.getMaximumX();
                 y5 = r1.getMinimumY();
                 x6 = r1.getMinimumX();
                 y6 = r2.getMaximumY();
             } else if (r1.getMaximumX() > r2.getMaximumX() &&
                     r1.getMaximumY() < r2.getMaximumY()) {
+                //Bottom Bottom Left Corner
                 x5 = r1.getMinimumX();
                 y5 = r2.getMinimumY();
                 x6 = r2.getMaximumX();

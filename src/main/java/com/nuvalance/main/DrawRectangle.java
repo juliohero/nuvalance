@@ -93,8 +93,8 @@ public class DrawRectangle extends JPanel {
                 MyRectangle myRectangle1 = new MyRectangle(rectangles.get(0));
                 MyRectangle myRectangle2 = new MyRectangle(rectangles.get(1));
 
-                System.out.println(myRectangle1.toString() + "w" + myRectangle1.width + " h " + myRectangle1.height);
-                System.out.println(myRectangle2.toString() + "w" + myRectangle2.width + " h " + myRectangle2.height);
+                System.out.println(rectangles.get(0).toString());
+                System.out.println(rectangles.get(1).toString());
 
                 RectangleIntersection rectangleIntersection = new RectangleIntersection();
                 if (service.isContainment(myRectangle1, myRectangle2) ||
